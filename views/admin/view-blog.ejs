@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        𝓙𝓪𝓲𝓷𝓪𝓶 𝓥𝓵𝓸𝓰𝓼
+    </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.6) !important;
+            backdrop-filter: blur(5px);
+            padding: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.289);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        figure img {
+            /* height: 400px !important; */
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background: #ff6f61;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background: #ff4f41;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <%- include('../partials/header') %>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container p-4 rounded shadow-lg" style="max-width: 900px;">
+            <div class="row text-light p-4 rounded">
+                <!-- blog Poster -->
+                <div class="col-md-6 text-center">
+                    <figure class="blog-poster">
+                        <img src="/<%= viewblog.imgUrl %>" class="img-fluid rounded shadow-lg"
+                            alt="<%= viewblog.title %>">
+                    </figure>
+                </div>
+                <!-- blog Details -->
+                <div class="col-md-6 text-start">
+                    <h2 class="blog-title">
+                        <%= viewblog.title %>
+                    </h2>
+                    <div class="blog-summary">
+                        <p>
+                            <%= viewblog.content %>
+                        </p>
+                    </div>
+                    <ul class="blog-meta list-unstyled">
+                        <li><strong>Rating:</strong> ⭐⭐⭐⭐ (4.0/5)</li>
+                        <li><strong>Category:</strong> Animation / Adventure / Comedy</li>
+                    </ul>
+                    <small class="text-info">
+                        Published: <%= new Date(viewblog.publishDateTime).toLocaleString() %>
+                    </small>
+                    <br>
+                    <a href="/" class="btn btn-outline-light mt-3">Back to Home</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
