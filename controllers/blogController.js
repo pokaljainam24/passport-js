@@ -2,21 +2,30 @@ const blog = require('../models/blogModel');
 const User = require('../models/userModel');
 const fs = require('fs');
 const path = require('path');
+const nodemailer = require("nodemailer");
 
+module.exports.loginsuccess = (req, res) => {
+    req.flash("success", "Login successfully..😎");
+    res.redirect("/home");
+}
+
+// open home page
 module.exports.openHomePage = async (req, res) => {
     try {
         const blogs = await blog.find().sort({ createdAt: -1 });
+
         res.render("admin/blog", { blogs });
     } catch (err) {
         console.log(err.message);
     }
 };
 
+// open add blog page
 module.exports.openaddBlogPage = (req, res) => {
     return res.render('admin/add-blog.ejs');
 }
 
-//post method for form on the openCreateBlogPage
+// post method for form on the openCreateBlogPage
 module.exports.submitBlog = async (req, res) => {
     console.log(req.body);
     console.log(req.file);
@@ -30,6 +39,7 @@ module.exports.submitBlog = async (req, res) => {
     }
 }
 
+// delete blog
 module.exports.deleteBlog = async (req, res) => {
     const { id } = req.params;
     try {
@@ -46,7 +56,7 @@ module.exports.deleteBlog = async (req, res) => {
     }
 }
 
-
+// open edit blog page
 module.exports.openEditPage = async (req, res) => {
     const { id } = req.params;
     try {
@@ -64,6 +74,7 @@ module.exports.openEditPage = async (req, res) => {
 };
 
 
+// post method for edit blog page
 module.exports.updateBlog = async (req, res) => {
     const { id } = req.params;
     try {
@@ -79,8 +90,6 @@ module.exports.updateBlog = async (req, res) => {
     }
 };
 
-
-//signup and login controller
 
 //open signup page
 module.exports.openSignupPage = (req, res) => {
@@ -107,8 +116,9 @@ module.exports.submitSignup = async (req, res) => {
 
 //open login page
 module.exports.openLoginPage = (req, res) => {
-    res.render('./admin/loginForm.ejs', { errorMessage: null });
-}
+    res.render("admin/loginForm");
+};
+
 
 
 //open single blog 
@@ -131,14 +141,158 @@ module.exports.singleBlogPage = async (req, res) => {
 
 // Profile Page
 module.exports.profilePage = (req, res) => {
-    return res.render("admin/profile"); 
+    return res.render("admin/profile");
 }
 
 
-//logout
+// changepassword Page
+module.exports.openchangepasswordPage = (req, res) => {
+    res.render("admin/changePassword");
+};
+
+
+// update password
+module.exports.updatePassword = async (req, res) => {
+    try {
+        const { currentPassword, newPassword, confirmPassword } = req.body;
+        const user = await User.findById(req.user.id);
+
+        if (!user) return res.redirect("/admin/changePassword");
+
+        if (currentPassword !== user.password) {
+            return res.redirect('/changePassword')
+        }
+
+        if (newPassword === confirmPassword) {
+            req.flash("success", "password changed successfully..🤝");
+            user.password = newPassword;
+            await user.save();
+            return res.redirect('/loginForm');
+        }
+
+    } catch (error) {
+        req.flash("error", "password not matched");
+        return res.redirect('/changePassword')
+
+    }
+};
+
+// forgot page 
+module.exports.openforgotPage = (req, res) => {
+    return res.render("admin/forgotPass");
+};
+
+//verify email for forgot password
+let otp;
+module.exports.verifyEmail = async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+
+        if (user) {
+
+            otp = Math.floor(100000 + Math.random() * 900000);
+            const transporter = nodemailer.createTransport({
+                service: "gmail",
+                port: 587,
+                secure: false,
+                auth: {
+                    user: "pokaljainam@gmail.com",
+                    pass: "eowc icwp jqho vgyx",
+                },
+            });
+
+
+            const info = await transporter.sendMail({
+                from: '"Jainam Pokal ✨" <pokaljainam@gmail.com>', // sender address
+                to: user.email, // list of receivers
+                subject: "Your Blog_Project Reset Password OTP 🔢", // Subject line
+                text: "Hello world?", // plain text body
+                html: `${otp}`, // html body
+            });
+
+            console.log("Message sent: %s", info.messageId);
+
+            res.cookie("email", JSON.stringify(req.body.email), { httpOnly: false, secure: false });
+
+            req.flash("success", "OTP sent successfully...✅");
+            res.redirect("/OtpVerify");
+
+            // return res.json({ message: `${user.username} is successfully verified..!` });
+        } else {
+            return res.json({ message: "User not Found..!" });
+        }
+    } catch (error) {
+        return res.json({ message: error.message });
+    }
+};
+
+// open otp verify page
+module.exports.openOtpVerifyPage = (req, res) => {
+    res.render("admin/OtpVerify");
+};
+
+// verify otp for forgot password
+module.exports.Verifyotp = (req, res) => {
+    try {
+        if (req.body.otp == otp) {
+            req.flash("success", "OTP verified successfully...✅");
+            return res.redirect("/resetPassword");
+        } else {
+            req.flash("error", "OTP not verified...❌");
+            return res.redirect("/OtpVerify");
+        }
+    } catch (error) {
+        return res.json({ message: error.message });
+    }      
+};
+
+// open reset password page
+module.exports.openResetPasswordPage = async (req, res) => {
+    try {
+        const email = req.cookies.email;
+
+        if (!email) {
+            req.flash("error", "OTP verification required.");
+            return res.redirect("/OtpVerify");
+        }
+
+        res.render("admin/resetPassword", { email });
+    } catch (error) {
+        return res.json({ message: error.message });
+    }
+};
+
+// reset password
+
+module.exports.resetPassword = async (req, res) => {
+    try {
+        const { newPassword, confirmPassword } = req.body;
+
+        const email = JSON.parse(req.cookies.email);
+        const user = await User.findOne({ email });
+
+        if (newPassword !== confirmPassword) {
+            req.flash("error", "Password not matched...❌");
+            return res.redirect("/resetPassword");
+        }
+
+        user.password = newPassword;
+        await user.save();
+
+        req.flash("success", "Password reset successfully...✅");
+        return res.redirect("/loginForm");
+
+    } catch (error) {
+        return res.json({ message: error.message });
+    }
+}
+
+
+// logout
 
 module.exports.logout = (req, res) => {
-    req.session.destroy(() => {
-        return res.redirect("/login");
+    req.logOut(() => {
+        req.flash("success", "Logout successfully..❤️");
+        return res.redirect("/loginForm");
     })
 }

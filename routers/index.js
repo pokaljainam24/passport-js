@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const { Router } = require('express');
+const router = Router();
 
 
-//-2 client routes
+//-1 client routes
 const blogRoutes = require('./blogRoutes');
 router.use(blogRoutes);
 

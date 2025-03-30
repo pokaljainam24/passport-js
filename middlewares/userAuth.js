@@ -1,8 +1,9 @@
 module.exports = (req, res, next) => {
-    console.log("User Auth Middleware - User:", req.user);
+    // console.log("User Auth Middleware - Authenticated:", req.isAuthenticated());
 
-    if (!req.user) {
+    if (!req.isAuthenticated()) {
         return res.redirect('/loginForm');
     }
-    next();
+
+    next(); 
 };
