@@ -39,9 +39,6 @@ app.use(express.static('public'));
 
 app.use("/uploads", express.static(path.join(__dirname, 'uploads')));
 
-app.use(cookieParser());
-
-
 
 // ------------ middlewares ------------ //
 
