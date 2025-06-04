@@ -3,127 +3,253 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        𝓙𝓪𝓲𝓷𝓪𝓶 𝓥𝓵𝓸𝓰𝓼
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝓙𝓪𝓲𝓷𝓪𝓶 𝓥𝓵𝓸𝓰𝓼</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: white;
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, rgb(24, 45, 52), rgb(24, 45, 52));
+            color: white !important;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         header {
-            background: rgba(0, 0, 0, 0.6) !important;
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
             padding: 15px;
-            transition: all 0.3s ease-in-out;
         }
 
-        .container {
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.289);
-            backdrop-filter: blur(10px);
-            padding: 30px;
+        .main-container {
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            padding: 40px;
             border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-            text-align: center;
+            margin-top: 100px !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            margin-top: 40px;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
+        .blog-title {
+            color: #ffddb3;
+            font-family: Georgia, serif;
         }
 
-        figure img {
-            /* height: 400px !important; */
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        .btn-outline-warning {
+            border-color: #ffddb3;
+            color: #ffddb3;
+        }
+
+        .btn-outline-warning:hover {
+            background-color: #ffddb3;
+            color: #1a1a1a;
+        }
+
+        h4 {
+            color: #ffddb3;
+        }
+
+        img {
             transition: transform 0.3s ease-in-out;
         }
 
         img:hover {
-            transform: scale(1.05);
-        }
-
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-top: 20px;
-        }
-
-        .btn-primary {
-            background: #ff6f61;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn-primary:hover {
-            background: #ff4f41;
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Header -->
     <div class="container-fluid">
         <%- include('../partials/header') %>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="container p-4 rounded shadow-lg" style="max-width: 900px;">
-            <div class="row text-light p-4 rounded">
-                <!-- blog Poster -->
-                <div class="col-md-6 text-center">
-                    <figure class="blog-poster">
-                        <img src="/<%= viewblog.imgUrl %>" class="img-fluid rounded shadow-lg"
-                            alt="<%= viewblog.title %>">
-                    </figure>
-                </div>
-                <!-- blog Details -->
-                <div class="col-md-6 text-start">
-                    <h2 class="blog-title">
-                        <%= viewblog.title %>
-                    </h2>
-                    <div class="blog-summary">
-                        <p>
-                            <%= viewblog.content %>
-                        </p>
+    <!-- Main Blog Content -->
+    <div class="container main-container">
+        <div class="text-center ">
+            <h1 class="display-5 blog-title">𝓙𝓪𝓲𝓷𝓪𝓶 𝓥𝓵𝓸𝓰𝓼</h1>
+        </div>
+
+        <!-- ✅ Full-width Featured Image -->
+        <div class="m-5">
+            <img src="/<%= viewblog.imgUrl %>" class="img-fluid w-100 rounded shadow" alt="Featured Blog Image"
+                style="max-height: 500px; object-fit: cover;">
+        </div>
+
+        <div class="row g-4 align-items-center">
+            <!-- Blog Image -->
+            <div class="col-md-6 text-center">
+                <img src="/<%= viewblog.imgUrl %>" class="img-fluid rounded shadow" alt="<%= viewblog.title %>"
+                    style="width: 550px; height: 400px;">
+            </div>
+
+            <!-- Blog Text -->
+            <div class="col-md-6">
+                <h2 class="fw-bold blog-title mb-3">
+                    <%= viewblog.title %>
+                </h2>
+                <p>
+                    <%= viewblog.content %>
+                </p>
+
+                <ul class="list-unstyled">
+                    <li><strong>Rating:</strong> ⭐⭐⭐⭐ (4.0/5)</li>
+                    <li><strong>Category:</strong> Animation / Adventure / Comedy</li>
+                </ul>
+
+                <small class="text-info">
+                    Published: <%= new Date(viewblog.publishDateTime).toLocaleString() %>
+                </small><br>
+
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div class="btn-group gap-2">
+                        <a href="/like-blog/<%= viewblog._id %>" class="btn btn-sm">
+                            <i class="fas fa-thumbs-up fs-4" style="color: royalblue;"></i>
+                            <strong class="text-light">
+                                <%= viewblog.likes %>
+                            </strong>
+                        </a>
                     </div>
-                    <ul class="blog-meta list-unstyled">
-                        <li><strong>Rating:</strong> ⭐⭐⭐⭐ (4.0/5)</li>
-                        <li><strong>Category:</strong> Animation / Adventure / Comedy</li>
-                    </ul>
-                    <small class="text-info">
-                        Published: <%= new Date(viewblog.publishDateTime).toLocaleString() %>
-                    </small>
+                </div>
+                <a href="/" class="btn btn-outline-warning mt-2">← Back to Home</a>
+            </div>
+
+            <!-- Divider -->
+            <hr class="my-5 text-light">
+
+            <!-- "ON THE BLOG" Section -->
+            <div class="text-center mb-4">
+                <h1 class="display-5 blog-title">ON THE BLOG</h1>
+            </div>
+
+            <div class="row g-4">
+                <!-- Blog Paragraph -->
+                <div class="col-md-7">
+                    <p style="text-align: justify;">
+                    <h5>🎬 The Power of Storytelling: Why We Keep Coming Back to the Movies</h5>
                     <br>
-                    <a href="/" class="btn btn-outline-light mt-3">Back to Home</a>
+                    Movies have a unique ability to transport us into different worlds, allowing us to live
+                    countless lives in just a few hours. Whether it’s an emotional drama, a mind-bending thriller,
+                    or a heartwarming romance, cinema connects with us on a level that few other mediums can. From
+                    the moment the lights dim in the theater, we’re no longer ourselves—we’re explorers of
+                    imagination, emotion, and humanity.
+
+                    <br><br>
+
+                    One of the reasons we’re so drawn to films is the emotional resonance they offer. A
+                    well-executed scene, delivered with authenticity by a talented actor, can stir feelings we
+                    didn’t even know we had. It’s in these moments that we remember how powerful storytelling can
+                    be. Films like The Pursuit of Happyness or Forrest Gump remind us that behind every struggle is
+                    a deeply human story waiting to be told.
+
+                    <br><br>
+
+                    Beyond entertainment, movies also hold up a mirror to society. Through historical epics, gritty
+                    dramas, and even sci-fi, filmmakers often tackle real-world issues—war, inequality, love, loss,
+                    and everything in between. Directors like Christopher Nolan, Greta Gerwig, and Bong Joon-ho use
+                    the screen not just to entertain, but to educate and provoke thought.
+
+                    <br><br>
+
+                    Visuals and soundscapes play a critical role as well. Cinematography captures beauty in motion,
+                    while a well-composed score elevates each scene’s emotion. Think of Hans Zimmer’s pulse-pounding
+                    compositions in Inception or the quiet power of silence in A Quiet Place. These elements create
+                    a fully immersive experience that stays with us long after the credits roll.
+
+                    <br><br>
+
+                    At the end of the day, what makes movies truly magical is their universality. No matter your
+                    background, language, or age, cinema has a way of making you feel seen and heard. From indie
+                    gems to blockbuster hits, every film contributes to the ongoing story of who we are—and who we
+                    aspire to be.
+                    </p>
+                </div>
+
+                <!-- My Story Sidebar -->
+                <div class="col-md-5 text-center">
+                    <h2 class="text-info mb-3">Movie Story 📽️📽️📽️</h2>
+                    <img src="/<%= viewblog.imgUrl %>" class="img-fluid rounded shadow mb-3" alt="Story 1"
+                        style="width: 500px !important; height: 300px !important;">
+                    <h2 class="text-info">Movie Story 📽️📽️📽️</h2>
+                    <img src="/<%= viewblog.imgUrl %>" class="img-fluid rounded shadow mt-3" alt="Story 2"
+                        style="width: 500px !important; height: 300px !important;">
                 </div>
             </div>
 
+            <section style="padding: 2rem;">
+                <h2 class="text-start fw-semibold mb-4">🎬 The Power of Storytelling: Why We Keep Coming Back to the
+                    Movies</h2>
+
+                <p>
+                    Movies have a unique ability to transport us into different worlds, allowing us to live countless
+                    lives in just a few hours. Whether it’s an emotional drama, a mind-bending thriller, or a
+                    heartwarming romance, cinema connects with us on a level that few other mediums can. From the moment
+                    the lights dim in the theater, we’re no longer ourselves—we’re explorers of imagination, emotion,
+                    and humanity.
+                </p>
+
+                <img src="/movie-img-content/cinema-movie-festival-landing-page-template_1.avif" alt="Cinema Theater"
+                    class="img-fluid rounded my-4" style="width: 1300px;height: 600px;">
+
+                <p>
+                    One of the reasons we’re so drawn to films is the emotional resonance they offer. A well-executed
+                    scene, delivered with authenticity by a talented actor, can stir feelings we didn’t even know we
+                    had. It’s in these moments that we remember how powerful storytelling can be. Films like <em>The
+                        Pursuit of Happyness</em> or <em>Forrest Gump</em> remind us that behind every struggle is a
+                    deeply human story waiting to be told.
+                </p>
+
+                <div class="row align-items-center my-5">
+                    <div class="col-md-6">
+                        <img src="/movie-img-content/gif-2.gif" alt="Forrest Gump Movie Poster"
+                            class="img-fluid rounded" style="width: 500%; height: auto;">
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            Beyond entertainment, movies also hold up a mirror to society. Through historical epics,
+                            gritty
+                            dramas, and even sci-fi, filmmakers often tackle real-world issues—war, inequality, love,
+                            loss, and
+                            everything in between. Directors like Christopher Nolan, Greta Gerwig, and Bong Joon-ho use
+                            the
+                            screen not just to entertain, but to educate and provoke thought.
+                        </p>
+
+                        <p>
+                            Visuals and soundscapes play a critical role as well. Cinematography captures beauty in
+                            motion,
+                            while a well-composed score elevates each scene’s emotion. Think of Hans Zimmer’s
+                            pulse-pounding
+                            compositions in <em>Inception</em> or the quiet power of silence in <em>A Quiet Place</em>.
+                            These
+                            elements create a fully immersive experience that stays with us long after the credits roll.
+                        </p>
+                    </div>
+                </div>
+
+                <p>
+                    At the end of the day, what makes movies truly magical is their universality. No matter your
+                    background, language, or age, cinema has a way of making you feel seen and heard. From indie gems to
+                    blockbuster hits, every film contributes to the ongoing story of who we are—and who we aspire to be.
+                </p>
+
+                <p>
+                    So next time you settle in for a movie night, remember: you’re not just watching a story
+                    unfold—you’re part of a timeless tradition that celebrates the best of human creativity and emotion.
+                </p>
+
+                <img src="/movie-img-content/gif-1.gif"
+                    alt="Audience Watching Movie" class="img-fluid rounded my-4" style="width: 100%; height: 600px;">
+            </section>
+
         </div>
-    </div>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        let profile = document.querySelector('.profile');
-        let menu = document.querySelector('.menu');
-
-        profile.onclick = function () {
-            menu.classList.toggle('active');
-        }
-    </script>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

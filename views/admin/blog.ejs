@@ -95,39 +95,177 @@
       </div>
     </div>
 
+    <!-- Our Services -->
+    <div class="album py-5">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold section-title">Our Services</h2>
+          <hr class="w-25 mx-auto">
+        </div>
+
+        <div class="row g-4">
+          <% blogs.slice(0, 3).forEach(blog=> { %>
+            <div class="col-md-4">
+              <div class="card border-0 h-100 shadow-sm">
+                <img src="<%= blog.imgUrl %>" class="card-img-top" alt="<%= blog.title %>">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">
+                    <%= blog.title %>
+                  </h5>
+                  <p class="card-text flex-grow-1 overflow-hidden"
+                    style=" overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <%= blog.content %>
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="btn-group gap-2">
+                      <a href="/like-blog/<%= blog._id %>" class="btn btn-sm">
+                        <i class="fas fa-thumbs-up fs-4" style="color: royalblue;"></i> <strong>
+                          <%= blog.likes %>
+                        </strong>
+                      </a>
+                      <a href="/view-blog/<%= blog._id %>" class="btn btn-sm">
+                        <i class="fas fa-eye fs-4 text-info"></i>
+                      </a>
+                    </div>
+                    <div class="btn-group gap-2">
+                      <a href="/edit-blog/<%= blog._id %>" class="btn btn-sm"
+                        onclick="return confirm('Are you sure you want to edit this blog?');">
+                        <i class="fas fa-pen-to-square fs-5 text-warning"></i>
+                      </a>
+                      <a href="/delete/<%= blog._id %>" class="btn btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this blog?');">
+                        <i class="fas fa-trash-alt fs-5 text-danger"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Starrs -->
+
+    <section style="background-color: rgb(24, 45, 52);">
+      <h2 class="fw-semibold text-light text-center mb-3">Top Stars</h2>
+      <hr class="w-25 mx-auto">
+
+      <div class="row g-3 container mx-auto">
+        <!-- Star Card 1 -->
+        <div class="col-6 col-sm-3">
+          <div class="position-relative rounded overflow-hidden">
+            <img
+              src="https://www.jolie.de/sites/default/files/styles/image_gallery360w/public/2020-02/leonardo-dicaprio-oscars.jpg?h=64dbc2fc&amp;itok=EH0B3oo4"
+              class="img-fluid w-100 h-100 object-fit-cover" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-3"
+              style="background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);">
+              <a href="#"
+                class="btn btn-sm btn-dark text-danger ms-auto rounded-circle d-flex justify-content-center align-items-center"
+                style="width:40px; height:40px;">
+                <i class="fa-solid fa-fire fs-4" style="color: rgb(255, 153, 0);"></i>
+              </a>
+              <div class="text-center text-white">
+                <div class="fw-medium">Leonardo DiCaprio</div>
+                <div class="small">+12 Movies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Star Card 2 -->
+        <div class="col-6 col-sm-3">
+          <div class="position-relative rounded overflow-hidden">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/WP_-_random_-5_%2814094372762%29.jpg/319px-WP_-_random_-5_%2814094372762%29.jpg"
+              class="img-fluid w-100 h-100 object-fit-cover" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-3"
+              style="background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);">
+              <a href="#"
+                class="btn btn-sm btn-dark text-danger ms-auto rounded-circle d-flex justify-content-center align-items-center"
+                style="width:40px; height:40px;">
+                <i class="fa-solid fa-fire fs-4" style="color: rgb(255, 153, 0);"></i>
+              </a>
+              <div class="text-center text-white">
+                <div class="fw-medium">Joseph Gordon-Levitt</div>
+                <div class="small">+24 Movies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Star Card 3 -->
+        <div class="col-6 col-sm-3">
+          <div class="position-relative rounded overflow-hidden">
+            <img src="https://img.zeit.de/kultur/film/2020-12/elliot-page-tranmann/wide__450x253__mobile__scale_1"
+              class="img-fluid w-100 h-100 object-fit-cover" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-3"
+              style="background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);">
+              <a href="#"
+                class="btn btn-sm btn-dark text-danger ms-auto rounded-circle d-flex justify-content-center align-items-center"
+                style="width:40px; height:40px;">
+                <i class="fa-solid fa-fire fs-4" style="color: rgb(255, 153, 0);"></i>
+              </a>
+              <div class="text-center text-white">
+                <div class="fw-medium">Elliot Page</div>
+                <div class="small">+10 Movies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Star Card 4 -->
+        <div class="col-6 col-sm-3">
+          <div class="position-relative rounded overflow-hidden">
+            <img src="https://de.web.img3.acsta.net/c_310_420/pictures/16/01/19/11/06/274206.jpg"
+              class="img-fluid w-100 h-100 object-fit-cover" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-3"
+              style="background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);">
+              <a href="#"
+                class="btn btn-sm btn-dark text-danger ms-auto rounded-circle d-flex justify-content-center align-items-center"
+                style="width:40px; height:40px;">
+                <i class="fa-solid fa-fire fs-4" style="color: rgb(255, 153, 0);"></i>
+              </a>
+              <div class="text-center text-white">
+                <div class="fw-medium">Tom Hardy</div>
+                <div class="small">+27 Movies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Movies Card Dynamic -->
+
     <div class="album py-5">
       <div class="container">
         <h1 class="text-white mb-5 text-center">Category Of Blogs</h1>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <% blogs.forEach(blog=> { %>
+          <% blogs.slice(3).forEach(blog=> { %>
             <div class="col">
               <div class="card shadow-sm h-100 d-flex flex-column">
-                <img style="object-fit: cover;" src="<%= blog.imgUrl %>" class="bd-placeholder-img card-img-top"
-                  width="100%" height="225" alt="<%= blog.title %>">
+                <img style="object-fit: cover;" src="<%= blog.imgUrl %>"
+                  class="bd-placeholder-img card-img-top object-fit-fill" width="100%" height="225"
+                  alt="<%= blog.title %>">
                 <div class="card-body d-flex flex-column">
                   <h3>
                     <%= blog.title %>
                   </h3>
-                  <p class="card-text flex-grow-1">
+                  <p class="card-text flex-grow-1"
+                    style=" overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                     <%= blog.content %>
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group gap-2">
-                      <a href="/view-blog/<%= blog._id %>" class="btn btn-sm btn-outline-success">
-                        View
-                      </a>
-
+                      <a href="/view-blog/<%= blog._id %>" class="btn btn-sm btn-outline-success">View</a>
                       <a href="/edit-blog/<%= blog.id %>" class="btn btn-sm btn-outline-warning"
-                        onclick="return alert('Are you sure you want to edit this blog?');">
-                        Edit
-                      </a>
-
+                        onclick="return alert('Are you sure you want to edit this blog?');">Edit</a>
                       <a href="/delete/<%= blog.id %>" class="btn btn-sm btn-outline-danger"
-                        onclick="return alert('Are you sure you want to delete this blog?');">
-                        Delete
-                      </a>
+                        onclick="return alert('Are you sure you want to delete this blog?');">Delete</a>
                     </div>
-
                     <small class="text-body-secondary">
                       <%= new Date(blog.publishDateTime).toLocaleString() %>
                     </small>
@@ -139,63 +277,107 @@
         </div>
       </div>
     </div>
+
   </main>
 
-  <footer class="position-relative">
-    <div class="container">
-      <!-- Back to Top -->
-      <p class="back-to-top">
-        <a href="#"><i class="bi bi-chevron-double-up fs-1 fw-bold text-white"></i></a>
-      </p>
+  <footer class="text-white pt-5 pb-4" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);">
+    <div class="container text-center text-md-start">
+      <div class="row">
 
-      <!-- Creator Info -->
-      <p class="mb-1">Created by <span class="text-info fw-bold">Jainam Pokal</span> &copy; 2025. All rights reserved.
-      </p>
+        <!-- About -->
+        <!-- <div class="row"> -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-warning fw-bold">🎬 MovieVerse</h5>
+          <p>
+            Dive into the world of cinema! <br>Discover, explore, and enjoy your favorite <br> movies and stars—all in
+            one place.
+          </p>
+        </div>
 
-      <!-- Social Links -->
-      <p class="mb-0 d-inline-flex gap-3">
-        <a href="https://linkedin.com/in/your-profile" target="_blank" class="footer-icons">
-          <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="https://github.com/pokaljainam24" target="_blank" class="footer-icons">
-          <i class="bi bi-github"></i>
-        </a>
-        <a href="https://twitter.com/your-profile" target="_blank" class="footer-icons">
-          <i class="bi bi-twitter"></i>
-        </a>
-      </p>
+        <!-- Quick Links -->
+        <div class="col-md-4 mb-4">
+          <h6 class="text-warning">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="/admin/about" class="text-white text-decoration-none">About Us</a></li>
+            <li><a href="/" class="text-white text-decoration-none">Movies</a></li>
+            <li><a href="/contact" class="text-white text-decoration-none">Contact</a></li>
+            <li><a href="/privacy" class="text-white text-decoration-none">Privacy Policy</a></li>
+          </ul>
+        </div>
 
+        <!-- Contact & Back to Top Side by Side -->
+
+        <div class="col-md-4 mb-4">
+          <div class="row">
+            <!-- Contact Info -->
+            <div class="col-6">
+              <h6 class="text-warning">Contact</h6>
+              <p><i class="bi bi-envelope-fill me-2 text-info"></i> Vlogs@gmail.com</p>
+              <p><i class="bi bi-geo-alt-fill me-2 text-info"></i> Mumbai, India</p>
+            </div>
+
+            <!-- Back to Top -->
+            <div class="col-6 d-flex flex-column align-items-end justify-content-center">
+              <a href="#" class="text-white text-decoration-none text-end">
+                <i class="bi bi-chevron-double-up fs-1 fw-bold hover-up"></i>
+                <p class="small mb-0">Back to Top</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- </div> -->
+      </div>
+
+      <!-- Social & Credit -->
+      <hr class="border-light" />
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-1">🚀 Created by <span class="text-info fw-bold">Jainam Pokal</span> &copy; 2025. All rights
+          reserved.</p>
+
+        <div class="d-flex gap-3 fs-4">
+          <a href="https://linkedin.com/in/your-profile" target="_blank" class="text-white footer-icons">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="https://github.com/pokaljainam24" target="_blank" class="text-white footer-icons">
+            <i class="bi bi-github"></i>
+          </a>
+          <a href="https://twitter.com/your-profile" target="_blank" class="text-white footer-icons">
+            <i class="bi bi-twitter"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <script>
-    
+
     let profile = document.querySelector('.profile');
     let menu = document.querySelector('.menu');
 
     profile.onclick = function () {
       menu.classList.toggle('active');
     }
-    
-    <% if(flash.success.length){ %>
-      swal({
-        title: "<%= flash.success %>",
-        icon: "success",
-        button: "OK",
-      })
-    <% } %>
 
-    <% if(flash.error.length){ %>
+      <% if (flash.success.length) { %>
+        swal({
+          title: "<%= flash.success %>",
+          icon: "success",
+          button: "OK",
+        })
+        <% } %>
+
+      <% if (flash.error.length) { %>
       swal({
         title: "<%= flash.error %>",
         icon: "error",
         button: "OK",
       })
-    <% }%>
+      <% }%>
 
   </script>
 

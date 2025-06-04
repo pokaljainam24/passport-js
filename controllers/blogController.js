@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const fs = require('fs');
 const path = require('path');
 const nodemailer = require("nodemailer");
+const Contact = require('../models/contactModel');
 
 module.exports.loginsuccess = (req, res) => {
     req.flash("success", "Login successfully..😎");
@@ -38,6 +39,32 @@ module.exports.submitBlog = async (req, res) => {
         console.log(error.message);
     }
 }
+
+// like blog
+module.exports.likeBlog = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const blogToLike = await blog.findById(id);
+
+        if (!blogToLike) {
+            req.flash("error", "Blog not found");
+            return res.redirect("/home");
+        }
+
+        blogToLike.likes += 1;
+        await blogToLike.save();
+
+        req.flash("success", "Thank you for liking the blog..! 👍");
+        res.redirect("/home");
+
+    } catch (error) {
+        console.log("Error liking blog:", error);
+        req.flash("error", "Something went wrong while liking the blog.");
+        res.redirect("/home");
+    }
+};
+
 
 // delete blog
 module.exports.deleteBlog = async (req, res) => {
@@ -79,9 +106,12 @@ module.exports.updateBlog = async (req, res) => {
     const { id } = req.params;
     try {
         const updatedData = { ...req.body };
+
+        // Handle image update
         if (req.file) {
-            updatedData.coverImage = req.file.filename;
+            updatedData.imgUrl = req.file.path;
         }
+
         await blog.findByIdAndUpdate(id, updatedData);
         return res.redirect("/home");
     } catch (err) {
@@ -89,6 +119,7 @@ module.exports.updateBlog = async (req, res) => {
         res.status(500).send("Error updating blog");
     }
 };
+
 
 
 //open signup page
@@ -135,6 +166,28 @@ module.exports.singleBlogPage = async (req, res) => {
     } catch (err) {
         console.log("Error fetching blog:", err);
         res.status(500).send("Error opening blog page");
+    }
+};
+
+// about Page
+module.exports.OpenAboutPage = (req, res) => {
+    return res.render("admin/about");
+}
+
+// contact page
+module.exports.OpenContactPage = (req, res) => {
+    return res.render('admin/contact');
+}
+
+// contact post
+module.exports.SubmitContact = async (req, res) => {
+    const { name, email, subject, message } = req.body;
+    try {
+        await Contact.create({ name, email, subject, message });
+        return res.redirect('/home');
+    } catch (err) {
+        console.log("Error submitting contact:", err);
+        return res.status(500).send("An error occurred. Please try again.");
     }
 };
 
@@ -243,7 +296,7 @@ module.exports.Verifyotp = (req, res) => {
         }
     } catch (error) {
         return res.json({ message: error.message });
-    }      
+    }
 };
 
 // open reset password page

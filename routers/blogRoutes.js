@@ -38,12 +38,20 @@ router.get('/home', blogController.openHomePage);
 router.get('/add-blog', blogController.openaddBlogPage);
 router.post('/admin/add-blog', upload, blogController.submitBlog);
 
+router.get("/like-blog/:id", blogController.likeBlog);
+
 router.get('/delete/:id', blogController.deleteBlog);
 
 router.get('/edit-blog/:id', blogController.openEditPage);
 router.post('/admin/edit-blog/:id', upload, blogController.updateBlog);
 
 router.get('/view-blog/:id', blogController.singleBlogPage);
+
+router.get('/admin/about', blogController.OpenAboutPage);
+
+router.get('/admin/contact', blogController.OpenContactPage);
+router.post('/admin/contact', blogController.SubmitContact);
+
 
 router.get('/admin/profile', blogController.profilePage);
 
