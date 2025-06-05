@@ -75,7 +75,7 @@
     <div class="py-5 text-center container-fluid" id="main-div">
 
       <video autoplay loop muted playsinline id="background-video">
-        <source src="/bg-video/18983876-uhd_3840_2160_25fps.mp4" type="video/mp4">
+        <source src="/bg-video/vid-2.mp4" type="video/mp4">
       </video>
 
       <div id="main-container">
@@ -98,9 +98,10 @@
     <!-- Our Services -->
     <div class="album py-5">
       <div class="container">
-        <div class="text-center mb-4">
-          <h2 class="fw-bold section-title">Our Services</h2>
-          <hr class="w-25 mx-auto">
+        <div class="text-start container-fluid mb-4">
+          <h2 class="fw-bold section-title" style="border-left: 5px solid lightgreen;"><strong class="mx-3">Our
+              Blogs</strong>
+          </h2>
         </div>
 
         <div class="row g-4">
@@ -118,26 +119,27 @@
                   </p>
                   <div class="d-flex justify-content-between align-items-center mt-2">
                     <div class="btn-group gap-2">
-                      <a href="/like-blog/<%= blog._id %>" class="btn btn-sm">
-                        <i class="fas fa-thumbs-up fs-4" style="color: royalblue;"></i> <strong>
+                      <a href="/like-blog/<%= blog._id %>" class="btn btn-sm text-primary">
+                        <i class="fas fa-thumbs-up fs-5"></i> <strong>
                           <%= blog.likes %>
                         </strong>
                       </a>
-                      <a href="/view-blog/<%= blog._id %>" class="btn btn-sm">
-                        <i class="fas fa-eye fs-4 text-info"></i>
+                      <a href="/view-blog/<%= blog._id %>" class="btn btn-sm text-info">
+                        <i class="fas fa-eye fs-5"></i>
                       </a>
                     </div>
                     <div class="btn-group gap-2">
-                      <a href="/edit-blog/<%= blog._id %>" class="btn btn-sm"
+                      <a href="/edit-blog/<%= blog._id %>" class="btn btn-sm text-warning"
                         onclick="return confirm('Are you sure you want to edit this blog?');">
-                        <i class="fas fa-pen-to-square fs-5 text-warning"></i>
+                        <i class="fas fa-pen-to-square fs-5"></i>
                       </a>
-                      <a href="/delete/<%= blog._id %>" class="btn btn-sm"
+                      <a href="/delete/<%= blog._id %>" class="btn btn-sm text-danger"
                         onclick="return confirm('Are you sure you want to delete this blog?');">
-                        <i class="fas fa-trash-alt fs-5 text-danger"></i>
+                        <i class="fas fa-trash-alt fs-5"></i>
                       </a>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -149,8 +151,9 @@
     <!-- Top Starrs -->
 
     <section style="background-color: rgb(24, 45, 52);">
-      <h2 class="fw-semibold text-light text-center mb-3">Top Stars</h2>
-      <hr class="w-25 mx-auto">
+      <h2 class="fw-semibold text-light text-start mb-4" style="border-left: 5px solid lightgreen; margin-left: 120px;">
+        <strong class="container">Top Stars</strong>
+      </h2>
 
       <div class="row g-3 container mx-auto">
         <!-- Star Card 1 -->
@@ -242,7 +245,9 @@
 
     <div class="album py-5">
       <div class="container">
-        <h1 class="text-white mb-5 text-center">Category Of Blogs</h1>
+        <h1 class="text-white mb-4 text-start" style="border-left: 5px solid lightgreen;"><strong class="mx-3">Category
+            Of
+            Blogs</strong></h1>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <% blogs.slice(3).forEach(blog=> { %>
             <div class="col">
@@ -278,6 +283,107 @@
       </div>
     </div>
 
+    <!-- Banner -->
+    <div class="position-relative text-white">
+      <img src="/bg-img/transformer-banner.jpg" alt="Transformers Banner" class="img-fluid w-100"
+        style="height: 500px; object-fit: fill;" />
+
+      <!-- Dark Overlay -->
+      <div class="position-absolute top-0 start-0 w-100 h-100"
+        style="background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0.3) 70%, transparent);">
+      </div>
+
+      <!-- Movie Content -->
+      <div class="position-absolute top-50 start-0 translate-middle-y ps-5 pe-4 w-100">
+        <div class="container">
+          <div class="w-50">
+            <h1 class="fw-bold display-4 mb-3">Transformers</h1>
+
+            <div class="d-flex align-items-center gap-4 mb-3 flex-wrap">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bx bxs-star text-primary"></i>
+                <span>9.5</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <i class="bx bxs-time text-light"></i>
+                <span>120 mins</span>
+              </div>
+              <span class="badge bg-secondary">HD</span>
+              <span class="badge bg-danger">16+</span>
+            </div>
+
+            <p class="mb-4">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius.
+              Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam,
+              incidunt molestias ratione mollitia accusantium, facere ab suscipit.
+            </p>
+
+            <a href="https://www.netflix.com/browse" class="btn btn-primary d-inline-flex align-items-center gap-2 px-4 py-2 fs-5">
+              <i class="bx bxs-right-arrow"></i>
+              Watch Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing section -->
+    <section class="pricing-section text-center">
+      <div class="container">
+        <p class="text-white-50 mb-1">Upgrade Your Casual Account</p>
+        <h2 class="fw-bold mb-5">Choose a right plan for you</h2>
+
+        <div class="row g-4 justify-content-center">
+          <!-- Free Plan -->
+          <div class="col-md-4">
+            <div class="card card-custom p-4 position-relative h-100">
+              <h4 class="fw-bold text-info">Free</h4>
+              <p class="text-white-50">For personal or non commercial projects</p>
+              <h2 class="fw-bold mb-3 text-info">$0 <small class="fs-6 fw-normal">/Month</small></h2>
+              <ul class="list-unstyled text-start text-light">
+                <li>✔ Design in Figma</li>
+                <li>✔ Design in Figma</li>
+                <li>✔ Design in Figma</li>
+              </ul>
+              <button class="btn btn-outline-light mt-4 w-100">Subscribe</button>
+            </div>
+          </div>
+
+          <!-- Startup Plan -->
+          <div class="col-md-4">
+            <div class="card card-custom highlight p-4 position-relative h-100">
+              <div class="badge-best">Best value for money!</div>
+              <h4 class="fw-bold text-info">Startup</h4>
+              <p class="text-white-50">For founders and teams in early stage companies</p>
+              <h2 class="fw-bold mb-3 text-info">$169 <small class="fs-6 fw-normal">/Month</small></h2>
+              <ul class="list-unstyled text-light text-start">
+                <li>✔ Design in Figma</li>
+                <li>✔ Design in Figma</li>
+                <li>✔ Design in Figma</li>
+              </ul>
+              <button class="btn btn-info mt-4 w-100 text-white">Subscribe</button>
+            </div>
+          </div>
+
+          <!-- Growth Plan -->
+          <div class="col-md-4">
+            <div class="card card-custom p-4 position-relative h-100">
+              <h4 class="fw-bold text-info">Growth</h4>
+              <p class="text-white-50">For companies with 50+ people and stakeholders</p>
+              <h2 class="fw-bold mb-3 text-info">$790 <small class="fs-6 fw-normal">/Month</small></h2>
+              <ul class="list-unstyled text-light text-start">
+                <li>✔ Design in Figma</li>
+                <li>✔ Design in Figma</li>
+                <li>✔ Design in Figma</li>
+              </ul>
+              <button class="btn btn-outline-light mt-4 w-100">Subscribe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
   </main>
 
   <footer class="text-white pt-5 pb-4" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);">
@@ -285,48 +391,48 @@
       <div class="row">
 
         <!-- About -->
-        <!-- <div class="row"> -->
-        <div class="col-md-4 mb-4">
-          <h5 class="text-warning fw-bold">🎬 MovieVerse</h5>
-          <p>
-            Dive into the world of cinema! <br>Discover, explore, and enjoy your favorite <br> movies and stars—all in
-            one place.
-          </p>
-        </div>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h5 class="text-warning fw-bold">🎬 MovieVerse</h5>
+            <p>
+              Dive into the world of cinema! <br>Discover, explore, and enjoy your favorite <br> movies and stars—all in
+              one place.
+            </p>
+          </div>
 
-        <!-- Quick Links -->
-        <div class="col-md-4 mb-4">
-          <h6 class="text-warning">Quick Links</h6>
-          <ul class="list-unstyled">
-            <li><a href="/admin/about" class="text-white text-decoration-none">About Us</a></li>
-            <li><a href="/" class="text-white text-decoration-none">Movies</a></li>
-            <li><a href="/contact" class="text-white text-decoration-none">Contact</a></li>
-            <li><a href="/privacy" class="text-white text-decoration-none">Privacy Policy</a></li>
-          </ul>
-        </div>
+          <!-- Quick Links -->
+          <div class="col-md-4 mb-4">
+            <h6 class="text-warning">Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="/admin/about" class="text-white text-decoration-none">About Us</a></li>
+              <li><a href="/" class="text-white text-decoration-none">Movies</a></li>
+              <li><a href="/contact" class="text-white text-decoration-none">Contact</a></li>
+              <li><a href="/privacy" class="text-white text-decoration-none">Privacy Policy</a></li>
+            </ul>
+          </div>
 
-        <!-- Contact & Back to Top Side by Side -->
+          <!-- Contact & Back to Top Side by Side -->
 
-        <div class="col-md-4 mb-4">
-          <div class="row">
-            <!-- Contact Info -->
-            <div class="col-6">
-              <h6 class="text-warning">Contact</h6>
-              <p><i class="bi bi-envelope-fill me-2 text-info"></i> Vlogs@gmail.com</p>
-              <p><i class="bi bi-geo-alt-fill me-2 text-info"></i> Mumbai, India</p>
-            </div>
+          <div class="col-md-4 mb-4">
+            <div class="row">
+              <!-- Contact Info -->
+              <div class="col-6">
+                <h6 class="text-warning">Contact</h6>
+                <p><i class="bi bi-envelope-fill me-2 text-info"></i> Vlogs@gmail.com</p>
+                <p><i class="bi bi-geo-alt-fill me-2 text-info"></i> Mumbai, India</p>
+              </div>
 
-            <!-- Back to Top -->
-            <div class="col-6 d-flex flex-column align-items-end justify-content-center">
-              <a href="#" class="text-white text-decoration-none text-end">
-                <i class="bi bi-chevron-double-up fs-1 fw-bold hover-up"></i>
-                <p class="small mb-0">Back to Top</p>
-              </a>
+              <!-- Back to Top -->
+              <div class="col-6 d-flex flex-column align-items-end justify-content-center">
+                <a href="#" class="text-white text-decoration-none text-end">
+                  <i class="bi bi-chevron-double-up fs-1 fw-bold hover-up"></i>
+                  <p class="small mb-0">Back to Top</p>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- </div> -->
+        </div>
       </div>
 
       <!-- Social & Credit -->
@@ -355,30 +461,33 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    // Wait for the DOM to be fully loaded before running scripts
+    document.addEventListener('DOMContentLoaded', function () {
+      let profile = document.querySelector('.profile');
+      let menu = document.querySelector('.menu');
 
-    let profile = document.querySelector('.profile');
-    let menu = document.querySelector('.menu');
+      if (profile) { // Check if profile element exists before adding event listener
+        profile.onclick = function () {
+          menu.classList.toggle('active');
+        }
+      }
 
-    profile.onclick = function () {
-      menu.classList.toggle('active');
-    }
-
-      <% if (flash.success.length) { %>
+    <% if (flash.success && flash.success.length) { %>
         swal({
           title: "<%= flash.success %>",
           icon: "success",
           button: "OK",
-        })
-        <% } %>
+        });
+    <% } %>
 
-      <% if (flash.error.length) { %>
-      swal({
-        title: "<%= flash.error %>",
-        icon: "error",
-        button: "OK",
-      })
-      <% }%>
-
+    <% if (flash.error && flash.error.length) { %>
+        swal({
+          title: "<%= flash.error %>",
+          icon: "error",
+          button: "OK",
+        });
+    <% }%>
+  });
   </script>
 
 </body>

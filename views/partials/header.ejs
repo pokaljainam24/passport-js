@@ -193,16 +193,6 @@
       text-align: center;
     }
 
-
-    .nav-pills .nav-link {
-      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-
-    .nav-pills .nav-link:hover {
-      background-color: rgb(163, 175, 255) !important;
-      color: black !important;
-    }
-
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -255,29 +245,16 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .btn-bd-primary {
-      --bd-violet-bg: #712cf9;
-      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-      --bs-btn-font-weight: 600;
-      --bs-btn-color: var(--bs-white);
-      --bs-btn-bg: var(--bd-violet-bg);
-      --bs-btn-border-color: var(--bd-violet-bg);
-      --bs-btn-hover-color: var(--bs-white);
-      --bs-btn-hover-bg: #6528e0;
-      --bs-btn-hover-border-color: #6528e0;
-      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-      --bs-btn-active-color: var(--bs-btn-hover-color);
-      --bs-btn-active-bg: #5a23c8;
-      --bs-btn-active-border-color: #5a23c8;
-    }
-
     .bd-mode-toggle {
       z-index: 1500;
     }
 
     .bd-mode-toggle .dropdown-menu .active .bi {
       display: block !important;
+    }
+
+    .dropdown-menu:hover {
+      background-color: #000 !important;
     }
 
     footer {
@@ -391,6 +368,57 @@
       color: #ffc107;
       transition: 0.3s;
     }
+
+    .btn-sm.text-primary {
+      color: rgba(45, 97, 122, 0.732) !important;
+    }
+
+    .btn-sm.text-info {
+      color: rgba(36, 194, 102, 0.841) !important;
+    }
+
+    .btn-sm.text-warning {
+      color: rgba(51, 44, 25, 0.989) !important;
+    }
+
+    .btn-sm.text-danger {
+      color: rgb(255, 51, 72) !important;
+    }
+
+    .pricing-section {
+      background: rgb(24,45,52);
+      color: white;
+      padding: 60px 0;
+    }
+
+    .card-custom {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card-custom:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+
+    .highlight {
+      border: 2px solid #00ffff;
+      background: rgba(0, 255, 255, 0.1);
+    }
+
+    .badge-best {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #00bcd4;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
   </style>
 
 
@@ -434,11 +462,14 @@
 
         </div>
 
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-          <li><a class="dropdown-item" href="/admin/profile"><i class="bi bi-person-fill"></i> Profile</a></li>
-          <li><a class="dropdown-item" href="/admin/changePassword"><i class="bi bi-person-fill-lock"></i> Change
+        <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="userDropdown">
+          <li class="p-2"><a class="dropdown-item fs-6 fw-semibold" href="/admin/profile"><i
+                class="bi bi-person-fill fs-4"></i> Profile</a></li>
+          <li class="p-2"><a class="dropdown-item fs-6 fw-semibold" href="/admin/changePassword"><i
+                class="bi bi-person-fill-lock fs-4"></i> Change
               Pass</a></li>
-          <li><a class="dropdown-item" href="/logout"><i class="bi bi-door-closed-fill"></i> Sign Out</a></li>
+          <li class="p-2"><a class="dropdown-item fs-6 fw-semibold" href="/logout"><i
+                class="bi bi-door-closed-fill fs-4"></i> Sign Out</a></li>
         </ul>
       </div>
 
